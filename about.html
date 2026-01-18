@@ -1,13 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="ka">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ჩვენს შესახებ | მწვანე საქართველო</title>
+    <title>ჩვენს შესახებ - მწვანე საქართველო</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,130 +14,110 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-green: #2d8659;
-            --secondary-green: #3da76a;
-            --light-green: #a8d5ba;
-            --dark-green: #1e5a3c;
-            --accent-yellow: #f4a261;
-            --bg-light: #f8fdf9;
-            --text-dark: #2c3e50;
-            --text-light: #ffffff;
-        }
-
         body {
             font-family: 'Noto Sans Georgian', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
+            color: #333;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            padding: 1rem 0;
+        header {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            color: var(--text-light);
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
+            gap: 15px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
             transition: transform 0.3s ease;
         }
 
-        .logo:hover {
+        .logo img:hover {
             transform: scale(1.05);
         }
 
-        .logo i {
-            font-size: 2rem;
+        .logo h1 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
 
-        .nav-menu a {
-            color: var(--text-light);
+        .nav-links a {
+            color: #fff;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
-            padding: 0.5rem 0;
         }
 
-        .nav-menu a::after {
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent-yellow);
+            background: #a8d08d;
             transition: width 0.3s ease;
         }
 
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--accent-yellow);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #a8d08d;
         }
 
-        /* Page Header */
         .page-header {
-            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
-            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.9), rgba(74, 124, 44, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%234a7c2c" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            color: var(--text-light);
-            margin-top: 60px;
+            color: white;
+            margin-top: 70px;
         }
 
-        .page-header h1 {
+        .page-header h2 {
             font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInDown 0.8s ease;
-        }
-
-        .page-header p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.95;
+            font-weight: 700;
             animation: fadeInUp 0.8s ease;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         @keyframes fadeInUp {
@@ -152,304 +131,205 @@
             }
         }
 
-        /* Container */
-        .container {
+        .content-section {
+            padding: 5rem 5%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
-        /* Mission Section */
-        .mission-section {
-            padding: 5rem 2rem;
+        .story-section {
             background: white;
         }
 
-        .mission-content {
+        .story-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
+            margin-bottom: 3rem;
         }
 
-        .mission-text h2 {
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .mission-text h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--accent-yellow);
-            border-radius: 2px;
-        }
-
-        .mission-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-dark);
+        .story-text h3 {
+            color: #2d5016;
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .mission-image {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .story-text p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .story-image {
+            background: linear-gradient(135deg, #e8f3e0 0%, #d4e8c8 100%);
             height: 400px;
-            background: linear-gradient(135deg, var(--light-green), var(--secondary-green));
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            position: relative;
         }
 
-        .mission-image i {
-            font-size: 8rem;
-            color: rgba(255, 255, 255, 0.3);
+        .story-image i {
+            font-size: 6rem;
+            color: #4a7c2c;
         }
 
-        /* Values Section */
-        .values-section {
-            padding: 5rem 2rem;
-            background: var(--bg-light);
+        .mission-vision {
+            background: #f5f9f3;
+            padding: 5rem 5%;
+        }
+
+        .mission-vision-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            color: var(--primary-green);
+            color: #2d5016;
             margin-bottom: 3rem;
             position: relative;
-            padding-bottom: 1rem;
         }
 
         .section-title::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            display: block;
             width: 80px;
             height: 4px;
-            background: var(--accent-yellow);
+            background: #4a7c2c;
+            margin: 1rem auto;
             border-radius: 2px;
         }
 
-        .values-grid {
+        .mv-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .value-card {
+        .mv-card {
             background: white;
             padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(45, 134, 89, 0.15);
-        }
-
-        .value-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--secondary-green), var(--primary-green));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
 
-        .value-card:hover .value-icon {
-            transform: rotate(360deg);
+        .mv-card:hover {
+            transform: translateY(-10px);
         }
 
-        .value-icon i {
-            font-size: 2.5rem;
-            color: white;
-        }
-
-        .value-card h3 {
-            font-size: 1.5rem;
-            color: var(--dark-green);
+        .mv-card i {
+            font-size: 3rem;
+            color: #4a7c2c;
             margin-bottom: 1rem;
         }
 
-        .value-card p {
-            color: var(--text-dark);
-            line-height: 1.8;
+        .mv-card h3 {
+            color: #2d5016;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
         }
 
-        /* Team Section */
-        .team-section {
-            padding: 5rem 2rem;
+        .mv-card p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .values-section {
             background: white;
+            padding: 5rem 5%;
         }
 
-        .team-grid {
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            gap: 2rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f5f9f3 0%, #e8f3e0 100%);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .value-item i {
+            font-size: 2.5rem;
+            color: #4a7c2c;
+            margin-bottom: 1rem;
+        }
+
+        .value-item h4 {
+            color: #2d5016;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-item p {
+            color: #666;
+        }
+
+        .quality-section {
+            background: #f5f9f3;
+            padding: 5rem 5%;
+        }
+
+        .quality-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quality-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
 
-        .team-member {
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-
-        .member-photo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--light-green), var(--secondary-green));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .member-photo::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2));
-        }
-
-        .team-member:hover .member-photo {
-            box-shadow: 0 15px 35px rgba(45, 134, 89, 0.2);
-        }
-
-        .member-photo i {
-            font-size: 5rem;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .member-info h3 {
-            font-size: 1.5rem;
-            color: var(--dark-green);
-            margin-bottom: 0.5rem;
-        }
-
-        .member-info .role {
-            color: var(--secondary-green);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .member-info p {
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        /* Timeline Section */
-        .timeline-section {
-            padding: 5rem 2rem;
-            background: var(--bg-light);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 3rem auto 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: var(--light-green);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            grid-column: 2;
-        }
-
-        .timeline-item:nth-child(even) .timeline-date {
-            grid-column: 1;
-            text-align: right;
-        }
-
-        .timeline-content {
+        .badge {
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
+            border: 3px solid #4a7c2c;
+            transition: all 0.3s ease;
         }
 
-        .timeline-content h3 {
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
+        .badge:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        .timeline-date {
-            color: var(--secondary-green);
-            font-weight: 600;
+        .badge i {
+            font-size: 3rem;
+            color: #4a7c2c;
+            margin-bottom: 1rem;
+        }
+
+        .badge h4 {
+            color: #2d5016;
             font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
         }
 
-        .timeline-item:nth-child(even) .timeline-date {
-            justify-content: flex-start;
-        }
-
-        .timeline-marker {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--accent-yellow);
-            border: 4px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px var(--light-green);
-            z-index: 1;
-        }
-
-        /* Footer */
         footer {
-            background: var(--dark-green);
-            color: var(--text-light);
-            padding: 3rem 2rem 1rem;
+            background: #2d5016;
+            color: white;
+            padding: 3rem 5%;
         }
 
         .footer-content {
@@ -457,284 +337,216 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
+            gap: 2rem;
         }
 
         .footer-section h3 {
-            color: var(--accent-yellow);
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            color: #a8d08d;
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-
+        .footer-section p,
         .footer-section a {
-            color: var(--text-light);
+            color: #ddd;
             text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
             transition: color 0.3s ease;
         }
 
         .footer-section a:hover {
-            color: var(--accent-yellow);
+            color: #a8d08d;
         }
 
-        .social-icons {
+        .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
         }
 
-        .social-icons a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
+        .social-links a {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #4a7c2c;
+            border-radius: 50%;
             transition: all 0.3s ease;
         }
 
-        .social-icons a:hover {
-            background: var(--accent-yellow);
+        .social-links a:hover {
+            background: #a8d08d;
             transform: translateY(-3px);
         }
 
         .footer-bottom {
             text-align: center;
+            margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid #4a7c2c;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .nav-menu {
-                flex-direction: column;
-                gap: 1rem;
+            .nav-links {
+                display: none;
             }
 
-            .page-header h1 {
+            .page-header h2 {
                 font-size: 2rem;
             }
 
-            .mission-content {
+            .story-content {
                 grid-template-columns: 1fr;
             }
 
-            .timeline::before {
-                left: 0;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .timeline-item {
-                grid-template-columns: 1fr;
+            .logo img {
+                height: 40px;
             }
 
-            .timeline-item:nth-child(even) .timeline-content {
-                grid-column: 1;
-            }
-
-            .timeline-item:nth-child(even) .timeline-date {
-                grid-column: 1;
-                text-align: left;
-            }
-
-            .timeline-marker {
-                left: 0;
-                transform: translateX(-50%);
-            }
-
-            .timeline-date {
-                justify-content: flex-start !important;
+            .logo h1 {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-leaf"></i>
-                <span>მწვანე საქართველო</span>
-            </a>
-            <ul class="nav-menu">
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://edu.tbcbank.ge/" target="_blank">
+                    <img src="https://i.postimg.cc/ZKZwXb0r/tbc-logo.png" alt="TBC Logo">
+                </a>
+                <h1>მწვანე საქართველო</h1>
+            </div>
+            <ul class="nav-links">
                 <li><a href="index.html">მთავარი</a></li>
                 <li><a href="about.html" class="active">ჩვენს შესახებ</a></li>
                 <li><a href="services.html">სერვისები</a></li>
                 <li><a href="news.html">სიახლეები</a></li>
                 <li><a href="contact.html">კონტაქტი</a></li>
             </ul>
-        </div>
-    </nav>
-
-    <!-- Page Header -->
-    <header class="page-header">
-        <h1>ჩვენს შესახებ</h1>
-        <p>ერთად ვქმნით მწვანე მომავალს საქართველოსთვის</p>
+        </nav>
     </header>
 
-    <!-- Mission Section -->
-    <section class="mission-section">
-        <div class="container">
-            <div class="mission-content">
-                <div class="mission-text">
-                    <h2>ჩვენი მისია</h2>
-                    <p>მწვანე საქართველო არის პლატფორმა, რომელიც აერთიანებს ახალგაზრდებს და აქტივისტებს გარემოს დაცვის საქმეში. ჩვენი მიზანია შევქმნათ ინტერაქტიული და მარტივად ხელმისაწვდომი პლატფორმა, სადაც ყველას შეეძლება აქტიური მონაწილეობა მიიღოს ეკოლოგიურ აქტივობებში.</p>
-                    <p>ჩვენ გვჯერა, რომ მცირე ცვლილებებმა შეიძლება დიდი შედეგი გამოიწვიოს. თითოეული ადამიანის წვლილი მნიშვნელოვანია და ერთად შეგვიძლია შევქმნათ უფრო სუფთა და მწვანე საქართველო.</p>
+    <div class="page-header">
+        <h2>ჩვენს შესახებ</h2>
+    </div>
+
+    <section class="story-section content-section">
+        <div class="story-content">
+            <div class="story-text">
+                <h3>ჩვენი ისტორია</h3>
+                <p>მწვანე საქართველო დაფუძნდა 2024 წელს, როდესაც ახალგაზრდა ეკო-აქტივისტების ჯგუფმა გადაწყვიტა შეექმნა პლატფორმა, რომელიც საქართველოში გარემოსდაცვით პრობლემებზე ცნობიერების ამაღლებას შეუწყობდა ხელს.</p>
+                <p>ჩვენ შევამჩნიეთ, რომ ინფორმაცია ეკოლოგიური პრობლემების შესახებ იყო ფრაგმენტული და რთულად მისაწვდომი, განსაკუთრებით ახალგაზრდებისთვის. შევქმენით ციფრული პლატფორმა, რომელიც აერთიანებს ყველა საჭირო რესურსს ერთ ადგილას.</p>
+                <p>დღეს ჩვენ ვართ 100+ აქტიური მოხალისის საზოგადოება, რომელიც მუშაობს საქართველოს უფრო მწვანე და სუფთა მომავლისთვის.</p>
+            </div>
+            <div class="story-image">
+                <i class="fas fa-seedling"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="mission-vision-container">
+            <h2 class="section-title">ჩვენი მისია და ხედვა</h2>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>მისია</h3>
+                    <p>ჩვენი მისიაა საქართველოში გარემოსდაცვითი ცნობიერების ამაღლება და აქტიური მოქალაქეების ჩართულობის გაზრდა ეკოლოგიურ საკითხებში. ვქმნით ხელმისაწვდომ და ინტერაქტიულ პლატფორმას, რომელიც ყველას საშუალებას აძლევს გახდეს ცვლილების ნაწილი.</p>
                 </div>
-                <div class="mission-image">
-                    <i class="fas fa-globe-europe"></i>
+                <div class="mv-card">
+                    <i class="fas fa-eye"></i>
+                    <h3>ხედვა</h3>
+                    <p>ვხედავთ საქართველოს, სადაც თითოეული მოქალაქე აქტიურად მონაწილეობს გარემოს დაცვაში. სადაც ციფრული ტექნოლოგიები და მოქალაქეთა ჩართულობა ქმნის ეკოლოგიურად მდგრად საზოგადოებას მომავალი თაობებისთვის.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Values Section -->
     <section class="values-section">
-        <div class="container">
-            <h2 class="section-title">ჩვენი ღირებულებები</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3>თანამშრომლობა</h3>
-                    <p>ერთობლივი ძალისხმევით ვქმნით ცვლილებებს და ვაერთიანებთ საზოგადოებას ერთი საერთო მიზნის გარშემო</p>
+        <h2 class="section-title">ჩვენი ღირებულებები</h2>
+        <div class="values-grid">
+            <div class="value-item">
+                <i class="fas fa-hands-helping"></i>
+                <h4>თანამშრომლობა</h4>
+                <p>ერთად უფრო ძლიერები ვართ</p>
+            </div>
+            <div class="value-item">
+                <i class="fas fa-lightbulb"></i>
+                <h4>ინოვაცია</h4>
+                <p>ტექნოლოგიები ბუნების სამსახურში</p>
+            </div>
+            <div class="value-item">
+                <i class="fas fa-leaf"></i>
+                <h4>მდგრადობა</h4>
+                <p>მომავლის გათვალისწინება</p>
+            </div>
+            <div class="value-item">
+                <i class="fas fa-users"></i>
+                <h4>ინკლუზიურობა</h4>
+                <p>ყველა ხმა მნიშვნელოვანია</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality-section">
+        <div class="quality-content">
+            <h2 class="section-title">ხარისხი და სანდოობა</h2>
+            <p style="font-size: 1.1rem; color: #555; margin-bottom: 2rem;">ჩვენ ვთანამშრომლობთ საუკეთესო ეკოლოგიურ ორგანიზაციებთან და ექსპერტებთან, რათა უზრუნველვყოთ ყველაზე ზუსტი და სანდო ინფორმაცია გარემოსდაცვითი საკითხების შესახებ.</p>
+            <div class="quality-badges">
+                <div class="badge">
+                    <i class="fas fa-certificate"></i>
+                    <h4>ვერიფიცირებული ინფორმაცია</h4>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>ინოვაცია</h3>
-                    <p>ვიყენებთ თანამედროვე ტექნოლოგიებს და კრეატიულ გადაწყვეტილებებს გარემოსდაცვითი პრობლემების მოსაგვარებლად</p>
+                <div class="badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>მონაცემთა უსაფრთხოება</h4>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>პასუხისმგებლობა</h3>
-                    <p>ვიღებთ პასუხისმგებლობას ბუნების დაცვაზე და მომავალი თაობებისთვის ჯანსაღი გარემოს შენარჩუნებაზე</p>
+                <div class="badge">
+                    <i class="fas fa-award"></i>
+                    <h4>ექსპერტთა მხარდაჭერა</h4>
                 </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>განათლება</h3>
-                    <p>ვავრცელებთ ცოდნას გარემოსდაცვის შესახებ და ვზრდით საზოგადოების ეკოლოგიურ ცნობიერებას</p>
+                <div class="badge">
+                    <i class="fas fa-globe"></i>
+                    <h4>საერთაშორისო სტანდარტები</h4>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="container">
-            <h2 class="section-title">ჩვენი გუნდი</h2>
-            <div class="team-grid">
-                <div class="team-member">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>გიორგი მელაძე</h3>
-                        <p class="role">დამფუძნებელი და CEO</p>
-                        <p>გარემოსდაცვითი აქტივისტი 10 წლიანი გამოცდილებით</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>ანა ბერიძე</h3>
-                        <p class="role">პროგრამების კოორდინატორი</p>
-                        <p>სპეციალისტი მდგრადი განვითარების საკითხებში</p>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <div class="member-photo">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="member-info">
-                        <h3>დავით ხარაძე</h3>
-                        <p class="role">ტექნიკური დირექტორი</p>
-                        <p>IT სპეციალისტი ეკო-ტექნოლოგიების მიმართულებით</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline-section">
-        <div class="container">
-            <h2 class="section-title">ჩვენი ისტორია</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">2024 მარტი</div>
-                    <div class="timeline-content">
-                        <h3>პირველი აქცია</h3>
-                        <p>ჩავატარეთ პირველი ეკოლოგიური დასუფთავების აქცია თბილისში</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">2024 ივნისი</div>
-                    <div class="timeline-content">
-                        <h3>პლატფორმის გაშვება</h3>
-                        <p>მწვანე საქართველოს ვებ-პლატფორმის ოფიციალური გაშვება</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-date">2024 სექტემბერი</div>
-                    <div class="timeline-content">
-                        <h3>100+ მოხალისე</h3>
-                        <p>მიაღწიეთ 100+ აქტიური მოხალისის ნიშნულს</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>მწვანე საქართველო</h3>
-                <p>ერთად ვქმნით უკეთეს გარემოს საქართველოში</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+                <p>ჩვენი მისიაა საქართველოში გარემოსდაცვითი ცნობიერების ამაღლება და აქტიური მოქალაქეების ჩართულობა</p>
             </div>
             <div class="footer-section">
                 <h3>სწრაფი ბმულები</h3>
-                <ul>
-                    <li><a href="index.html">მთავარი</a></li>
-                    <li><a href="about.html">ჩვენს შესახებ</a></li>
-                    <li><a href="services.html">სერვისები</a></li>
-                    <li><a href="news.html">სიახლეები</a></li>
-                </ul>
+                <a href="about.html">ჩვენს შესახებ</a>
+                <a href="services.html">სერვისები</a>
+                <a href="news.html">სიახლეები</a>
+                <a href="contact.html">კონტაქტი</a>
             </div>
             <div class="footer-section">
                 <h3>კონტაქტი</h3>
-                <ul>
-                    <li><i class="fas fa-phone"></i> +995 555 123 456</li>
-                    <li><i class="fas fa-envelope"></i> info@greengeorgia.ge</li>
-                    <li><i class="fas fa-map-marker-alt"></i> თბილისი, საქართველო</li>
-                </ul>
+                <p><i class="fas fa-envelope"></i> info@greengeorgia.ge</p>
+                <p><i class="fas fa-phone"></i> +995 555 123 456</p>
+                <p><i class="fas fa-map-marker-alt"></i> თბილისი, საქართველო</p>
+            </div>
+            <div class="footer-section">
+                <h3>მიგვყევი</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -742,12 +554,4 @@
         </div>
     </footer>
 </body>
-</html>timeline-marker"></div>
-                    <div class="timeline-date">2024 იანვარი</div>
-                    <div class="timeline-content">
-                        <h3>დაარსება</h3>
-                        <p>მწვანე საქართველოს პროექტის დაარსება და პირველი ნაბიჯები</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="
+</html>
