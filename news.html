@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>სიახლეები | მწვანე საქართველო</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2d8659;
+            --secondary-green: #3da76a;
+            --light-green: #a8d5ba;
+            --dark-green: #1e5a3c;
+            --accent-yellow: #f4a261;
+            --bg-light: #f8fdf9;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--accent-yellow);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: var(--text-light);
+            margin-top: 60px;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Featured News */
+        .featured-news {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, #ffffff, #f8fdf9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            transition: all 0.3s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(45, 134, 89, 0.15);
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, var(--light-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.1));
+        }
+
+        .featured-image i {
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.3);
+            z-index: 1;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .featured-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--secondary-green);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .featured-content h2 {
+            font-size: 2.2rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .featured-content p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .read-more:hover {
+            background: var(--dark-green);
+            transform: translateX(5px);
+        }
+
+        /* News Grid */
+        .news-section {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-yellow);
+            border-radius: 2px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(45, 134, 89, 0.15);
+        }
+
+        .news-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--light-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image i {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .news-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .news-body {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-date {
+            color: var(--secondary-green);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .news-body h3 {
+            font-size: 1.4rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .news-body p {
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 2px solid var(--bg-light);
+        }
+
+        .news-link {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .news-link:hover {
+            color: var(--dark-green);
+            gap: 1rem;
+        }
+
+        /* Events Calendar */
+        .events-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .events-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, #ffffff, #f8fdf9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .event-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(45, 134, 89, 0.15);
+        }
+
+        .event-date-box {
+            background: var(--primary-green);
+            color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(45, 134, 89, 0.3);
+        }
+
+        .event-day {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-month {
+            font-size: 1rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .event-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .event-details span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-action {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.7rem 1.5rem;
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .btn-small:hover {
+            background: #e89550;
+            transform: translateY(-2px);
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Noto Sans Georgian', sans-serif;
+        }
+
+        .newsletter-input:focus {
+            outline: 3px solid var(--accent-yellow);
+        }
+
+        .newsletter-btn {
+            padding: 1rem 2.5rem;
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans Georgian', sans-serif;
+        }
+
+        .newsletter-btn:hover {
+            background: #e89550;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-green);
+            color: var(--text-light);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-yellow);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+
+            .event-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .event-date-box {
+                margin: 0 auto;
+            }
+
+            .event-details {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .event-action {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-input {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                <span>მწვანე საქართველო</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">მთავარი</a></li>
+                <li><a href="about.html">ჩვენს შესახებ</a></li>
+                <li><a href="services.html">სერვისები</a></li>
+                <li><a href="news.html" class="active">სიახლეები</a></li>
+                <li><a href="contact.html">კონტაქტი</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>სიახლეები და ღონისძიებები</h1>
+        <p>იყავი კურსში უახლესი ეკოლოგიური სიახლეებისა და ღონისძიებების შესახებ</p>
+    </header>
+
+    <!-- Featured News -->
+    <section class="featured-news">
+        <div class="container">
+            <div class="featured-card">
+                <div class="featured-image">
+                    <span class="featured-badge">უახლესი</span>
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="featured-content">
+                    <div class="featured-meta">
+                        <span><i class="far fa-calendar"></i> 15 იანვარი, 2026</span>
+                        <span><i class="far fa-user"></i> ადმინი</span>
+                    </div>
+                    <h2>თბილისში გაიხსნა 10 ახალი გადამუშავების პუნქტი</h2>
+                    <p>დედაქალაქის სხვადასხვა უბანში განთავსდა თანამედროვე სტანდარტების შესაბამისი გადამუშავების პუნქტები, სადაც მოქალაქეებს შეეძლებათ პლასტიკის, ქაღალდის, შუშისა და მეტალის ცალ-ცალკე განთავსება. ეს არის უდიდესი ნაბიჯი საქართველოს ეკოლოგიური განვითარებისკენ.</p>
+                    <a href="#" class="read-more">ვრცლად <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent News -->
+    <section class="news-section">
+        <div class="container">
+            <h2 class="section-title">ბოლო სიახლეები</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <span class="news-category">სიახლე</span>
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> 12 იანვარი, 2026
+                        </div>
+                        <h3>ბორჯომში დაირგო 500 ხე</h3>
+                        <p>გარემოსდაცვითი აქტივისტების და ადგილობრივი მოსახლეობის ერთობლივი ძალისხმევით ბორჯომის ტყეში დაირგო 500-ზე მეტი ხე. ღონისძიებას 200-ზე მეტი მოხალისე დაესწრო.</p>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                ვრცლად <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <span class="news-category">აქცია</span>
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> 10 იანვარი, 2026
+                        </div>
+                        <h3>მთაწმინდის პარკის დასუფთავება</h3>
+                        <p>ჩატარდა მასშტაბური დასუფთავების აქცია მთაწმინდის პარკში. 150-მდე მოხალისემ შეაგროვა 2 ტონამდე ნაგავი და გადამუშავებისთვის გაგზავნა.</p>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                ვრცლად <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <span class="news-category">განათლება</span>
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> 8 იანვარი, 2026
+                        </div>
+                        <h3>ეკო-ლექციები სკოლებში</h3>
+                        <p>დაიწყო საგანმანათლებლო პროგრამა თბილისის 20 სკოლაში, სადაც მოსწავლეებს ასწავლიან გარემოს დაცვის საფუძვლებს და ნარჩენების სწორ მართვას.</p>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                ვრცლად <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <span class="news-category">ტექნოლოგია</span>
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> 5 იანვარი, 2026
+                        </div>
+                        <h3>მობილური აპლიკაციის გაშვება</h3>
+                        <p>მალე გაიშვება მწვანე საქართველოს მობილური აპლიკაცია, რომელიც კიდევ უფრო გაამარტივებს გადამუშავების პუნქტების პოვნას და ღონისძიებებში მონაწილეობას.</p>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                ვრცლად <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <span class="news-category">პარტნიორობა</span>
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> 3 იანვარი, 2026
+                        </div>
+                        <h3>ახალი პარტნიორი ორგანიზაციები</h3>
+                        <p>მწვანე საქართველო გაფართოვდა - შემოგვიერთდა 5 ახალი ეკო-ორგანიზაცია, რაც გაზრდის ჩვენს გავლენას და შესაძლებლობებს.</p>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                ვრცლად <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <span class="news-category">წარმატება</span>
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="news-body">
+                        <div class="news-date">
+                            <i class="far fa-calendar"></i> 1 იანვარი, 2026
+                        </div>
+                        <h3>2025 წლის შედეგები</h3>
+                        <p>გასული წელი იყო წარმატებული - 100+ აქტიური მოხალისე, 50+ ღონისძიება და ათასობით ტონა გადამუშავებული ნარჩენი. გმადლობთ ყველას!</p>
+                        <div class="news-footer">
+                            <a href="#" class="news-link">
+                                ვრცლად <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="events-section">
+        <div class="container">
+            <h2 class="section-title">მომავალი ღონისძიებები</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date-box">
+                        <div class="event-day">25</div>
+                        <div class="event-month">იან</div>
+                    </div>
+                    <div class="event-info">
+                        <h3>ვაკის პარკის დასუფთავება</h3>
+                        <div class="event-details">
+                            <span><i class="far fa-clock"></i> 10:00 - 14:00</span>
+                            <span><i class="fas fa-map-marker-alt"></i> ვაკის პარკი</span>
